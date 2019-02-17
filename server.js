@@ -1,16 +1,16 @@
 var express = require('express');
-// var cors = require('cors')
+ var cors = require('cors')
 var app = express();
 var path = require('path')
 var compression = require('compression')
-// var corsOptions = {
-//     origin: 'https://rocky-scrubland-37288.herokuapp.com',
-//     credentials: true,
+var corsOptions = {
+   origin: 'https://removal.herokuapp.com',
+    credentials: true,
 
-// }
+ }
 const PORT = process.env.PORT
 
-// app.use(cors(corsOptions));
+ app.use(cors(corsOptions));
 
 app.use(compression())
 
