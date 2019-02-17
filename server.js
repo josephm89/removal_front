@@ -4,7 +4,7 @@ var app = express();
 var path = require('path')
 var compression = require('compression')
 var corsOptions = {
-    origin: 'http://localhost:2000',
+    origin: 'https://rocky-scrubland-37288.herokuapp.com',
     credentials: true,
 
 }
