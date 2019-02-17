@@ -4,7 +4,8 @@ var app = express();
 var path = require('path')
 var compression = require('compression')
 var corsOptions = {
-   origin: 'https://removal.herokuapp.com',
+   origin: '*',
+   // origin: 'https://removal.herokuapp.com',
     credentials: true,
 
  }
