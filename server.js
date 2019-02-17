@@ -8,6 +8,8 @@ var corsOptions = {
     credentials: true,
 
 }
+const PORT = process.env.PORT
+
 app.use(cors(corsOptions));
 
 app.use(compression())
@@ -21,7 +23,7 @@ app.get(function (req, res) {
 
 
 
-var server = app.listen(2000, function () {
+var server = app.listen(PORT, function () {
   var host = server.address().address;
   var port = server.address().port;
 
