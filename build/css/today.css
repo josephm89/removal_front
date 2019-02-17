@@ -1,0 +1,99 @@
+
+.grid-today{
+  margin-left: 20px;
+   display: grid;
+   height: 95vh;
+   grid-template-areas:
+  'lEF rIG';
+}
+
+
+.grid-item-today-right{
+  grid-area: rIG;
+  display: grid;
+  height: 95vh;
+  width: 50vw;
+ /*width 50vw in main.css*/
+  /*border: 3px solid green;*/
+  grid-template-areas:
+  " fli"
+  " map"
+  " map"
+  " map"
+  " map"
+  " map"
+  " map"
+  " map"
+  " map"
+  " map"
+  " map"
+  " map"
+  " map"
+  " map"
+  " sli"
+  ;
+  grid-template-rows: repeat(15,1fr);
+}
+
+.grid-item-today-left{
+  grid-area: lEF;
+  display: grid;
+  height: 95vh;
+  width: 50vw;
+  grid-template-areas:
+  "todli "
+  "todli "
+  "todli "
+  "todli "
+  "todli "
+  "todli "
+  "todli "
+  "todli "
+  "todli "
+  "todli "
+  "todli "
+  "todli "
+  "todli "
+  "todli "
+  "todli "
+  ;
+  grid-template-rows: repeat(15,1fr);
+}
+
+.today_date_outer{
+   display: grid;
+   grid-area: date;
+   grid-template-areas:
+  'date_left date_right';
+}
+
+.filter_today{
+  grid-area: date_right;
+}
+
+.today_date_selector{
+/*z-index:2;*/
+  grid-area: date_left;
+}
+
+.grid-item-list-today{
+  grid-area:todli;
+}
+
+.grid-item-slider-today{
+  grid-area:sli;
+  grid-auto-rows:1fr;*/
+}
+
+.slider-div{
+
+  width: 1fr;
+  margin: 20px;
+  height:1fr;
+
+}
+
+.truckFlickerJob{
+  color: red;
+}
+
