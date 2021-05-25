@@ -7,7 +7,7 @@ import { MapObject, mapObjectInstances } from "../models/mapObject"
 import { withRouter } from "react-router"
 
 import ReactTable from 'react-table'
-import 'react-table/react-table.css'
+//import 'react-table/react-table.css'
 
 class BranchesInfo extends React.Component {
   constructor(props) {

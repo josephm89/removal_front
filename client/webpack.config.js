@@ -1,81 +1,60 @@
+// Generated using webpack-cli https://github.com/webpack/webpack-cli
 
-// var webpack = require('webpack');
+const path = require("path");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 
-// var config = {
-//   entry: [
-//   // 'webpack-hot-middleware/client',
-//   'babel-polyfill',
-//   __dirname + '/app.js'
-//   ],
-//   output: {
-//     path: __dirname + '/build',
-//     filename: 'bundle.js'
-//   },
-//   devtool: 'source-map',
-//   resolve: {
-//     extensions: ['.js', '.jsx', '.css']
-//   },
-//   plugins: [
-//    // new webpack.HotModuleReplacementPlugin(),
-//     new webpack.NoEmitOnErrorsPlugin()
-//   ],
+const isProduction = process.env.NODE_ENV == "production";
 
-//   node:{
-//     fs: "empty",
-//     child_process: "empty"
-//   },   
+const stylesHandler = "style-loader";
 
-//   module: {
-//     rules: [
-//       {
-//         test: /\.jsx?$/,
-//         exclude: /(node_modules)/,
-//         loader: 'babel-loader',
-    
-//         query: {
-//           presets: ['react', 'es2015','stage-0'],
-//           plugins: ['react-html-attrs', 'transform-class-properties', 'transform-decorators-legacy']
-//         }
-//       },
-//       // {
-//       //         test: /\.(jpe?g|png|gif|svg)$/i,
-//       //         loaders: [
-//       //             'file-loader?hash=sha512&digest=hex&name=[hash].[ext]',
-//       //             'image-webpack-loader?bypassOnDebug&optimizationLevel=7&interlaced=false'
-//       //         ]
-//       //     },
-//       {
-//               test: /\.(jpe?g|png|gif|svg)$/i,
-//               loaders: ['file-loader?context=src/images&name=images/[path][name].[ext]', {
-//                 loader: 'image-webpack-loader',
-//                 query: {
-//                   mozjpeg: {
-//                     progressive: true,
-//                   },
-//                   gifsicle: {
-//                     interlaced: false,
-//                   },
-//                   optipng: {
-//                     optimizationLevel: 4,
-//                   },
-//                   pngquant: {
-//                     quality: '75-90',
-//                     speed: 3,
-//                   },
-//                 },
-//               }],
-//               exclude: /node_modules/,
-//               include: __dirname,
-//             },
-//       {
-//               test: /\.css$/,
-//               use: [
-//                 { loader: "style-loader" },
-//                 { loader: "css-loader" }
-//               ]
-//             }
-//     ]
-//   }
-// };
+const config = {
+  entry: "./app.js",
+  output: {
+    path: path.resolve(__dirname, "build"),
+    filename: 'bundle.js'
+  },
+  resolve: {
+    extensions: ['.js', '.jsx', '.css']
+  },
+  devServer: {
+    open: true,
+    host: "localhost",
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: "./build/index.html",
+    }),
 
-// module.exports = config;
+    // Add your plugins here
+    // Learn more about plugins from https://webpack.js.org/configuration/plugins/
+  ],
+  module: {
+    rules: [
+      {
+        test: /\.(js|jsx)$/i,
+        exclude: /node_modules/,
+        loader: "babel-loader",
+      },
+      {
+        test: /\.css$/i,
+        use: [stylesHandler, "css-loader"],
+      },
+      {
+        test: /\.(eot|svg|ttf|woff|woff2|png|jpg|gif)$/i,
+        type: "asset",
+      },
+
+      // Add your rules for custom modules here
+      // Learn more about loaders from https://webpack.js.org/loaders/
+    ],
+  },
+};
+
+module.exports = () => {
+  if (isProduction) {
+    config.mode = "production";
+  } else {
+    config.mode = "development";
+  }
+  return config;
+};

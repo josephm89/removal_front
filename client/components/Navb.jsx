@@ -1,6 +1,6 @@
-import React from "react"
-import { Link } from "react-router"
-import BranchesInfo from "./BranchesInfo.jsx"
+import React from "react";
+import { Link } from "react-router-dom";
+import BranchesInfo from "./BranchesInfo.jsx";
 
 class Navb extends React.Component {
 

@@ -3,7 +3,8 @@ import SignUp from "./SignUp";
 import UserList from "./UserList";
 import EnterCosts from "./EnterCosts";
 import AddEmployee from "./AddEmployee";
-import { Button, Collapse, Well } from "react-bootstrap";
+import Button from "react-bootstrap/Button";
+import Collapse from "react-bootstrap/Collapse";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import * as accountManagementActions from "../../actions/account_management_actions.js";
@@ -52,7 +53,6 @@ class AccountManagement extends React.Component {
         </Button>
         <Collapse in={this.state.open0}>
           <div>
-            <Well>
               <AddEmployee
                 signUpClick={signUpClick}
                 signUploginEmail={signUploginEmail}
@@ -60,7 +60,6 @@ class AccountManagement extends React.Component {
                 signUpPasswordConfirm={signUpPasswordConfirm}
                 getUsers={getUsers}
               />
-            </Well>
           </div>
         </Collapse>
 

@@ -1,13 +1,12 @@
 import React from "react"
-import {
-  Form,
-  Button,
-  FormControl,
-  form,
-  FormGroup,
-  ControlLabel,
-  HelpBlock
-} from "react-bootstrap"
+import Form from 'react-bootstrap/Form'
+import Button from 'react-bootstrap/Button'
+//import FromControl from 'react-bootstrap/FromControl'
+import form from 'react-bootstrap/form'
+import FormGroup from 'react-bootstrap/FormGroup'
+import FormLabel from 'react-bootstrap/FormLabel'
+//import HelpBlock from 'react-bootstrap/HelpBlock'
+
 import { Converter } from "csvtojson"
 import Geocoder from "../../models/geocoder"
 import { bindActionCreators } from "redux"
@@ -342,7 +341,7 @@ class UpdateData extends React.Component {
       <div>
         <Form inline>
           <FormGroup>
-            <ControlLabel>Please Select CSV File</ControlLabel>
+            <FormLabel>Please Select CSV File</FormLabel>
             <FormControl type="file" id="file" />
             <Button
               bsStyle="success"
@@ -353,7 +352,7 @@ class UpdateData extends React.Component {
             </Button>
 
             <br />
-            <ControlLabel>Please Select Surveys CSV File</ControlLabel>
+            <FormLabel>Please Select Surveys CSV File</FormLabel>
             <FormControl type="file" id="surveys_file" />
             <Button
               bsStyle="success"
@@ -364,7 +363,7 @@ class UpdateData extends React.Component {
             </Button>
 
             <FormControl.Feedback />
-            <HelpBlock>CSV stands for Comma Separated Values</HelpBlock>
+
           </FormGroup>
         </Form>
       </div>

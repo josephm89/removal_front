@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactTable from 'react-table'
-import 'react-table/react-table.css'
+//import 'react-table/react-table.css'
 import { connect } from 'react-redux'
 import * as partloadActions from '../../actions/partload_actions'
 import { bindActionCreators } from 'redux'

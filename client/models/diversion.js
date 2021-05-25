@@ -1,6 +1,7 @@
 import Trip from './trip'
 import Branch from './branch'
-import uuidv4 from 'uuid/v4'
+import { v4 as uuidv4 } from 'uuid';
+//import uuidv4 from 'uuid/v4'
 import Costs from './costs'
 import store from '../store.js'
 var diversions = []

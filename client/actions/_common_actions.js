@@ -38,6 +38,13 @@ export function toggleBranchesOnMap(pathname) {
   };
 }
 
+export function setBranchIconClickedId(id){
+  return {
+    type: 'SET_BRANCH_ICON_CLICKED_ID',
+    id
+  }
+}
+
 // <<<<<<< HEAD
 // export function setShowToBranch(){
 //   return {

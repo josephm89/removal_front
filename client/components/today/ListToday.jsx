@@ -5,7 +5,7 @@ import { bindActionCreators } from "redux"
 import { connect } from "react-redux"
 import { mapObjectInstances } from "../../models/mapObject"
 import ReactTable from 'react-table'
-import 'react-table/react-table.css'
+//import 'react-table/react-table.css'
 import moment from 'moment'
 import loadingGIF from '../../build/images/loading.svg'
 import Trip from '../../models/trip'

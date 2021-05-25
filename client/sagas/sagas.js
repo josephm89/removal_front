@@ -1,4 +1,4 @@
-import {takeEvery} from 'redux-saga'
+//import takeEvery from 'redux-saga/takeEvery'
 import {call, put} from 'redux-saga/effects'
 import axios from 'axios'
 
@@ -18,11 +18,11 @@ yield put({type: 'GET_TRIPS_REJECTED'})
 
 
 //watcher saga
-export function* watchGetAllTripsFromRails(){
-  console.log('saga listener on ')
-  yield takeEvery('GET_TRIPS_FULFILLED', createTripsFulfilledAsynch)
+//export function* watchGetAllTripsFromRails(){
+  //console.log('saga listener on ')
+  //yield takeEvery('GET_TRIPS_FULFILLED', createTripsFulfilledAsynch)
   //note that the action would be 'GET_TRIP'
-}
+//}
 
 
 
