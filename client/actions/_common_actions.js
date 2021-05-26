@@ -6,13 +6,13 @@ export function setSliderSecondsFromStart(secondsPassed, pathname) {
   return {
     type: "SET_SLIDER_SECONDS_FROM_START",
     secondsPassed,
-    pathname
+    pathname,
   };
 }
 
 export function toggleAnimationRunning() {
   return {
-    type: "TOGGLE_ANIMATION_RUNNING"
+    type: "TOGGLE_ANIMATION_RUNNING",
   };
 }
 
@@ -20,29 +20,29 @@ export function setAnimationSpeed(pathname, increment) {
   return {
     type: "SET_ANIMATION_SPEED",
     pathname,
-    increment
+    increment,
   };
 }
 
 export function toggleBranchListDisplayed(pathname) {
   return {
     type: "TOGGLE_BRANCH_LIST_DISPLAYED",
-    pathname
+    pathname,
   };
 }
 
 export function toggleBranchesOnMap(pathname) {
   return {
     type: "TOGGLE_BRANCHES_ON_MAP",
-    pathname
+    pathname,
   };
 }
 
-export function setBranchIconClickedId(id){
+export function setBranchIconClickedId(id) {
   return {
-    type: 'SET_BRANCH_ICON_CLICKED_ID',
-    id
-  }
+    type: "SET_BRANCH_ICON_CLICKED_ID",
+    id,
+  };
 }
 
 // <<<<<<< HEAD
@@ -75,21 +75,21 @@ export function setBranchIconClickedId(id){
 export function set_ids_of_trips(id) {
   return {
     type: "SET_IDS_OF_TRIPS",
-    id
+    id,
   };
 }
 
 export function toggleFullScreenMap(pathname) {
   return {
     type: "TOGGLE_FULL_SCREEN_MAP",
-    pathname
+    pathname,
   };
 }
 
 export function setFilterSearchString(searchString) {
   return {
     type: "SET_FILTER_SEARCH_STRING",
-    payload: searchString
+    payload: searchString,
   };
 }
 
@@ -97,7 +97,7 @@ export function setCurrentTruckFlickerJob(job, pathname) {
   return {
     type: "SET_CURRENT_TRUCKFLICKER_JOB",
     payload: job,
-    pathname
+    pathname,
   };
 }
 
@@ -105,21 +105,21 @@ export function clearCurrentTruckFlickerJob(pathname) {
   console.log("pathname", pathname);
   return {
     type: "CLEAR_CURRENT_TRUCKFLICKER_JOB",
-    pathname
+    pathname,
   };
 }
 
 export function setHiddenStatus(job) {
   return {
     type: "SET_HIDDEN_STATUS",
-    payload: job
+    payload: job,
   };
 }
 //
 export function setUnhiddenStatus(job) {
   return {
     type: "SET_UNHIDDEN_STATUS",
-    payload: job
+    payload: job,
   };
 }
 
@@ -130,23 +130,23 @@ export function setUnhiddenStatus(job) {
 // }
 
 export function getAllTripsFromRails() {
-  return function(dispatch) {
-    const url = "https://rocky-scrubland-37288.herokuapp.com/api/trips";
+  return function (dispatch) {
+    const url = "http://localhost:5000/api/trips";
     axios
       .get(url, { withCredentials: true })
-      .then(response => {
-        response.data.forEach(trip => {
+      .then((response) => {
+        response.data.forEach((trip) => {
           var a = new Trip(trip);
         });
         dispatch({
           type: "GET_TRIPS_FULFILLED",
-          payload: response.data
+          payload: response.data,
         });
       })
-      .catch(error => {
+      .catch((error) => {
         dispatch({
           type: "GET_TRIPS_REJECTED",
-          payload: error
+          payload: error,
         });
       });
   };
@@ -155,23 +155,23 @@ export function getAllTripsFromRails() {
 //////////////////////////////
 
 export function getRosCandidatesFromRails() {
-  return function(dispatch) {
-    const url = "https://rocky-scrubland-37288.herokuapp.com/api/rosCandidates";
+  return function (dispatch) {
+    const url = "http://localhost:5000/api/rosCandidates";
     axios
       .get(url, { withCredentials: true })
-      .then(response => {
-        response.data.forEach(trip => {
+      .then((response) => {
+        response.data.forEach((trip) => {
           // var a = new Trip(trip)
         });
         dispatch({
           type: "GET_ROS_CANDIDATES_FULFILLED",
-          payload: response.data
+          payload: response.data,
         });
       })
-      .catch(error => {
+      .catch((error) => {
         dispatch({
           type: "GET_ROS_CANDIDATES_REJECTED",
-          payload: error
+          payload: error,
         });
       });
   };
@@ -179,12 +179,12 @@ export function getRosCandidatesFromRails() {
 
 /////////////////////////////////////////
 export function getAllSurveysFromRails() {
-  return function(dispatch) {
-    const url = "https://rocky-scrubland-37288.herokuapp.com/api/surveys";
+  return function (dispatch) {
+    const url = "http://localhost:5000/api/surveys";
     axios
       .get(url, { withCredentials: true })
-      .then(response => {
-        response.data.forEach(survey => {
+      .then((response) => {
+        response.data.forEach((survey) => {
           var a = new Appointment(
             survey.appointment_date,
             survey.appointment_time,
@@ -202,53 +202,53 @@ export function getAllSurveysFromRails() {
         });
         dispatch({
           type: "GET_SURVEYS_FULFILLED",
-          payload: response.data
+          payload: response.data,
         });
       })
-      .catch(error => {
+      .catch((error) => {
         dispatch({
           type: "GET_SURVEYS_REJECTED",
-          payload: error
+          payload: error,
         });
       });
   };
 }
 
 export function getAllEmployeesFromRails() {
-  return function(dispatch) {
-    const url = "https://rocky-scrubland-37288.herokuapp.com/api/employees";
+  return function (dispatch) {
+    const url = "http://localhost:5000/api/employees";
     axios
       .get(url, { withCredentials: true })
-      .then(response => {
+      .then((response) => {
         dispatch({
           type: "GET_EMPLOYEES_FULFILLED",
-          payload: response.data
+          payload: response.data,
         });
       })
-      .catch(error => {
+      .catch((error) => {
         dispatch({
           type: "GET_EMPLOYEES_REJECTED",
-          payload: error
+          payload: error,
         });
       });
   };
 }
 
 export function getAllBranchesFromRails() {
-  return function(dispatch) {
-    const url = "https://rocky-scrubland-37288.herokuapp.com/api/branches";
+  return function (dispatch) {
+    const url = "http://localhost:5000/api/branches";
     axios
       .get(url, { withCredentials: true })
-      .then(response => {
+      .then((response) => {
         dispatch({
           type: "GET_BRANCHES_FULFILLED",
-          payload: response.data
+          payload: response.data,
         });
       })
-      .catch(error => {
+      .catch((error) => {
         dispatch({
           type: "GET_BRANCHES_REJECTED",
-          payload: error
+          payload: error,
         });
       });
   };

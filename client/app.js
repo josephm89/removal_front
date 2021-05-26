@@ -9,7 +9,7 @@ import {
 } from "react-router-dom";
 
 import { Provider } from "react-redux";
-import store, { history } from "./store";
+import store from "./store";
 //import Raven from "raven-js";
 //import { sentry_url, logException } from "./helpers/config";
 
@@ -35,8 +35,9 @@ class TopComponent extends React.Component {
   render() {
     return (
       <Provider store={store}>
-        <Router history={history}>
-          <Route path="/" component={Layout}>
+        <Router>
+          <Switch>
+            <Route path="/" component={Layout} />
             <Route path="home" component={Home} />
             <Route path="planner" component={Planner} />
             <Route path="today" component={Today} />
@@ -49,7 +50,7 @@ class TopComponent extends React.Component {
               path="account_management/add_user"
               component={AccountManagement}
             />
-          </Route>
+          </Switch>
         </Router>
       </Provider>
     );

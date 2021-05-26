@@ -1,20 +1,20 @@
 import axios from "axios";
 
 export function fetchUser() {
-  return function(dispatch) {
-    const url = "https://rocky-scrubland-37288.herokuapp.com/users.json";
+  return function (dispatch) {
+    const url = "http://localhost:5000/users.json";
     axios
       .get(url, { withCredentials: true })
-      .then(response => {
+      .then((response) => {
         dispatch({
           type: "FETCH_USER_FULFILLED",
-          payload: response.data
+          payload: response.data,
         });
       })
-      .catch(error => {
+      .catch((error) => {
         dispatch({
           type: "FETCH_USER_REJECTED",
-          payload: error
+          payload: error,
         });
       });
   };
@@ -23,41 +23,41 @@ export function fetchUser() {
 export function loginEmail(email) {
   return {
     type: "LOGIN_EMAIL_CHANGE",
-    email
+    email,
   };
 }
 
 export function loginPassword(password) {
   return {
     type: "LOGIN_PASSWORD_CHANGE",
-    password
+    password,
   };
 }
 
 ////////////////////////////////////////////////////
 export function signInClick(user_email, user_password) {
-  return function(dispatch) {
+  return function (dispatch) {
     const data = {
       user: {
         email: user_email,
-        password: user_password
-      }
+        password: user_password,
+      },
     };
 
-    const url = "https://rocky-scrubland-37288.herokuapp.com/users/sign_in.json";
+    const url = "http://localhost:5000/users/sign_in.json";
 
     axios
       .post(url, data, { withCredentials: true })
-      .then(response => {
+      .then((response) => {
         dispatch({
           type: "SIGN_IN_FULFILLED",
-          currentUser: response.data
+          currentUser: response.data,
         });
       })
-      .catch(error => {
+      .catch((error) => {
         dispatch({
           type: "SIGN_IN_REJECTED",
-          payload: error
+          payload: error,
         });
       });
   };
@@ -65,20 +65,20 @@ export function signInClick(user_email, user_password) {
 ////////////////////////////////////////////////////////
 
 export function signOut() {
-  return function(dispatch) {
-    const url = "https://rocky-scrubland-37288.herokuapp.com/users/sign_out.json";
+  return function (dispatch) {
+    const url = "http://localhost:5000/users/sign_out.json";
     axios
       .delete(url, { withCredentials: true })
-      .then(response => {
+      .then((response) => {
         dispatch({
           type: "SIGN_OUT_FULFILLED",
-          payload: response.data
+          payload: response.data,
         });
       })
-      .catch(error => {
+      .catch((error) => {
         dispatch({
           type: "SIGN_OUT_REJECTED",
-          payload: error
+          payload: error,
         });
       });
   };

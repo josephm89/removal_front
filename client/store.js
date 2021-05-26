@@ -1,9 +1,10 @@
 import { applyMiddleware,createStore, compose } from 'redux'
-import { syncHistoryWithStore} from 'react-router-redux'
+//import { syncHistoryWithStore} from 'react-router-redux'
 //import browserHistory from 'react-router/browserHistory'
 import { BrowserRouter } from 'react-router-dom'
 import rootReducer from './reducers/_combiner'
-import logger from 'redux-logger'
+//import logger from 'redux-logger'
+import { createLogger } from 'redux-logger'
 import thunk from 'redux-thunk'
 import createSagaMiddleware from 'redux-saga'
 import {rootSaga} from './sagas/sagas'
@@ -20,14 +21,14 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 //   window.devToolsExtension ? window.devToolsExtension() : f => f
 //   )
 const sagaMiddleware = createSagaMiddleware()
-const middleware = applyMiddleware(sagaMiddleware, thunk, logger())
+const middleware = applyMiddleware(sagaMiddleware, thunk, createLogger({collapsed:true}))
 // const middleware = applyMiddleware(thunk)
 
 const enhancer = composeEnhancers(middleware)
 
 const store = createStore(rootReducer, defaultState,  enhancer)
 
-export const history = syncHistoryWithStore(BrowserRouter, store)
+//export const history = syncHistoryWithStore(BrowserRouter, store)
 
 //took out middleware and logger from createStore (they are included in enhancer and seems to work...redux extension now works)
 

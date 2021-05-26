@@ -11,29 +11,29 @@ import Diversion from "../models/diversion";
 
 export function clearPartloadMarkerArray() {
   return {
-    type: "CLEAR_PARTLOAD_MARKER_ARRAY"
+    type: "CLEAR_PARTLOAD_MARKER_ARRAY",
   };
 }
 
 export function getTripByIdFromRails(trip_id) {
-  return function(dispatch) {
-    const url = `https://rocky-scrubland-37288.herokuapp.com/api/get_trip_by_id/${trip_id}`;
+  return function (dispatch) {
+    const url = `http://localhost:5000/api/get_trip_by_id/${trip_id}`;
     console.log("url", url);
 
     axios
       .get(url, { withCredentials: true })
-      .then(response => {
+      .then((response) => {
         var a = new Trip(response.data);
         console.log("trip received", a);
         dispatch({
           type: "GET_TRIP_BY_ID_FROM_RAILS_FULFILLED",
-          trip_id
+          trip_id,
         });
       })
-      .catch(error => {
+      .catch((error) => {
         dispatch({
           type: "GET_TRIP_BY_ID_FROM_RAILS_REJECTED",
-          payload: error
+          payload: error,
         });
       });
   };
@@ -43,13 +43,13 @@ export function removal_from_store_suggestions_request(
   trip_id,
   end_date_milli
 ) {
-  return function(dispatch) {
-    const url = `https://rocky-scrubland-37288.herokuapp.com/api/removal_from_store/123/${end_date_milli}/${trip_id}`;
+  return function (dispatch) {
+    const url = `http://localhost:5000/api/removal_from_store/123/${end_date_milli}/${trip_id}`;
     console.log("url", url);
-    // const url = 'https://rocky-scrubland-37288.herokuapp.com/api/removal_from_store/123/1511827200000/1241'
+    // const url = 'http://localhost:5000/api/removal_from_store/123/1511827200000/1241'
     axios
       .get(url, { withCredentials: true })
-      .then(response => {
+      .then((response) => {
         var diversions_promised = [];
         var latlng_holder = JSON.parse(response.data[0].latlng);
         var directions_holder = JSON.parse(
@@ -58,30 +58,30 @@ export function removal_from_store_suggestions_request(
         response.data[0].latlng = latlng_holder;
         response.data[4].google_waypoints_directions = directions_holder;
 
-        response.data[2].forEach(trip => {
+        response.data[2].forEach((trip) => {
           var a = new Trip(trip);
           var diversion = createDiversion(trip, response.data);
           diversions_promised.push(diversion);
         });
 
-        response.data[3].forEach(trip => {
+        response.data[3].forEach((trip) => {
           var a = new Trip(trip);
           var diversion = createDiversion(trip, response.data, false);
           diversions_promised.push(diversion);
           console.log("diversion", diversion);
         });
-        Promise.all(diversions_promised).then(diversions => {
+        Promise.all(diversions_promised).then((diversions) => {
           dispatch({
             type: "GET_REMOVAL_FROM_STORE_SUGGESTIONS_FULFILLED",
             payload: response.data,
-            trip_id
+            trip_id,
           });
         });
       })
-      .catch(error => {
+      .catch((error) => {
         dispatch({
           type: "GET_REMOVAL_FROM_STORE_SUGGESTIONS_REJECTED",
-          payload: error
+          payload: error,
         });
       });
   };
@@ -102,31 +102,31 @@ function createDiversion(trip, response_array, single_trip_solution = true) {
 export function addMarkerToPartloadMarkerArray(coords) {
   return {
     type: "ADD_MARKER_TO_PARTLOAD_MARKER_ARRAY",
-    payload: coords
+    payload: coords,
   };
 }
 
 export function getPickUpBestJobsFromRails(startLat, startLng) {
-  return function(dispatch) {
-    const url = "https://rocky-scrubland-37288.herokuapp.com/api/trips/partload_closest_pickup.json";
+  return function (dispatch) {
+    const url = "http://localhost:5000/api/trips/partload_closest_pickup.json";
     const data = {
       startLat,
-      startLng
+      startLng,
     };
 
     axios
       .post(url, data, { withCredentials: true })
-      .then(response => {
+      .then((response) => {
         console.log("response from rails", response.data);
         dispatch({
           type: "BEST_PICK_UP_JOBS_FULFILLED",
-          payload: response.data
+          payload: response.data,
         });
       })
-      .catch(error => {
+      .catch((error) => {
         dispatch({
           type: "BEST_PICK_UP_JOBS_REJECTED",
-          payload: error
+          payload: error,
         });
       });
   };
@@ -157,20 +157,20 @@ export function getPickUpBestJobsFromRails(startLat, startLng) {
 
 export function clearPickUpBestJobs() {
   return {
-    type: "CLEAR_BEST_PICK_UP_JOBS"
+    type: "CLEAR_BEST_PICK_UP_JOBS",
   };
 }
 
 export function setPartloadCollectionPostcode(postcode) {
   return {
     type: "SET_PARTLOAD_COLLECTION_POSTCODE",
-    payload: postcode
+    payload: postcode,
   };
 }
 
 export function setPartloadDeliveryPostcode(postcode) {
   return {
     type: "SET_PARTLOAD_DELIVERY_POSTCODE",
-    payload: postcode
+    payload: postcode,
   };
 }
