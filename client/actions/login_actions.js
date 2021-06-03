@@ -43,7 +43,7 @@ export function signInClick(user_email, user_password) {
         password: user_password,
       },
     };
-
+    console.log("signinclickaction");
     const url = "http://localhost:5000/users/sign_in.json";
 
     axios

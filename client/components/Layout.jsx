@@ -69,6 +69,7 @@ class Layout extends React.Component {
 
     //if there is no currentuser, show loginbox
     if (!currentUser) {
+      console.log("NO CURRENTUSER");
       toDisplay = (
         <LoginBox
           signInClick={signInClick}

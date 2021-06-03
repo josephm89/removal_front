@@ -11,10 +11,11 @@ const config = {
   entry: "./app.js",
   output: {
     path: path.resolve(__dirname, "build"),
-    filename: 'bundle.js'
+    filename: "bundle.js",
   },
+  devtool: "source-map",
   resolve: {
-    extensions: ['.js', '.jsx', '.css']
+    extensions: [".js", ".jsx", ".css"],
   },
   devServer: {
     open: true,

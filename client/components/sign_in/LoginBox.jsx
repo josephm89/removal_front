@@ -15,6 +15,7 @@ class LoginBox extends React.Component {
 
   handleSignInClick(event) {
     event.preventDefault();
+    console.log("signin clicked");
     this.props.signInClick(this.props.user_email, this.props.user_password);
   }
 
