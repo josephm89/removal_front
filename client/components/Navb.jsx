@@ -63,7 +63,7 @@ class Navb extends React.Component {
               Logistics <i className="fa fa-caret-down" />
             </button>
             <div className="dropdown-nav-content" id="dropdown-nav-content">
-              <Link to="today">Today</Link>
+              <Link to="/today">Today</Link>
               <Link to="/surveyor">Surveyor's Diary</Link>
               <Link to="/planner">Planner</Link>
               <Link to="/partload" className="partload_link">

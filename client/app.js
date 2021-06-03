@@ -2,9 +2,9 @@ import React from "react";
 import ReactDOM from "react-dom";
 
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-
+import { ConnectedRouter } from "connected-react-router";
 import { Provider } from "react-redux";
-import store from "./store";
+import configureStore, { history } from "./store";
 //import Raven from "raven-js";
 //import { sentry_url, logException } from "./helpers/config";
 
@@ -26,36 +26,48 @@ import AccountManagement from "./components/account_management/AccountManagement
 // }).install()
 
 // Raven.showReportDialog()//user gets a pop up
+// const defaultState = {
+//   loginDetails: {},
+// };
+
+const store = configureStore();
 
 class TopComponent extends React.Component {
   render() {
     return (
       <Provider store={store}>
-        <Router>
-          <div>
-            <NavB />
+        <ConnectedRouter history={history}>
+          <Router>
             <div>
-              <Switch>
-                <Route exact path="/" component={Layout} />
-                <Route path="home" component={Home} />
-                <Route path="planner" component={Planner} />
-                <Route path="today" component={Today} />
-                <Route path="surveyor" component={Surveyor} />
-                <Route path="update_data" component={UpdateData} />
-                <Route
-                  path="account_management"
-                  component={AccountManagement}
-                />
-                <Route path="partload" component={Partload} />
-                <Route path="removal_from_store" component={RemovalFromStore} />
-                <Route
-                  path="account_management/add_user"
-                  component={AccountManagement}
-                />
-              </Switch>
+              <NavB />
+              <div>
+                <Switch>
+                  {/* <Route exact path="/" component={Layout} /> */}
+                  <Route exact path="/" component={Home} />
+                  <Route path="/planner" component={Planner} />
+                  <Route path="/today">
+                    <Today />
+                  </Route>
+                  <Route path="/surveyor" component={Surveyor} />
+                  <Route path="/update_data" component={UpdateData} />
+                  <Route
+                    path="/account_management"
+                    component={AccountManagement}
+                  />
+                  <Route path="/partload" component={Partload} />
+                  <Route
+                    path="/removal_from_store"
+                    component={RemovalFromStore}
+                  />
+                  <Route
+                    path="/account_management/add_user"
+                    component={AccountManagement}
+                  />
+                </Switch>
+              </div>
             </div>
-          </div>
-        </Router>
+          </Router>
+        </ConnectedRouter>
       </Provider>
     );
   }

@@ -22,10 +22,9 @@ const config = {
     host: "localhost",
   },
   plugins: [
-    new HtmlWebpackPlugin({
-      template: "./build/index.html",
-    }),
-
+    // new HtmlWebpackPlugin({
+    //   template: "./build/index.html",
+    // }),
     // Add your plugins here
     // Learn more about plugins from https://webpack.js.org/configuration/plugins/
   ],
