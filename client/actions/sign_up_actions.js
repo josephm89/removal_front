@@ -25,8 +25,7 @@ export function signUpPasswordConfirm(password) {
 export function signUpClick(
   signup_email,
   signup_password,
-  signup_password_confirm,
-  callback
+  signup_password_confirm
 ) {
   return function (dispatch) {
     const data = {
@@ -42,8 +41,7 @@ export function signUpClick(
     axios
       .post(url, data)
       .then((response) => {
-        console.log("hello", callback);
-        callback();
+        console.log("hello");
         dispatch({
           type: "SIGN_UP_FULFILLED",
           currentUser: response.data,

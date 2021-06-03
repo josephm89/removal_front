@@ -1,5 +1,4 @@
 import { applyMiddleware, createStore, compose } from "redux";
-//import { syncHistoryWithStore} from 'react-router-redux'
 
 import rootReducer from "./reducers/_combiner";
 //connect-router
@@ -7,7 +6,10 @@ import { createBrowserHistory } from "history";
 import { routerMiddleware } from "connected-react-router";
 //
 import { createLogger } from "redux-logger";
+
+//redux-thunk
 import thunk from "redux-thunk";
+//
 import createSagaMiddleware from "redux-saga";
 import { rootSaga } from "./sagas/sagas";
 
@@ -37,7 +39,8 @@ export default function configureStore(defaultState) {
     defaultState,
     compose(
       applyMiddleware(
-        routerMiddleware(history)
+        routerMiddleware(history),
+        thunk
         //enhancer
         // for dispatching history actions
         // ... other middlewares ...
