@@ -50,7 +50,7 @@ const config = {
                 }
              }  
         ]
-      },
+      },// #TODOconfig postcss-loader for old browsers
       {
         test: /\.(eot|svg|ttf|woff|woff2|png|jpg|gif)$/i,
         type: "asset",
