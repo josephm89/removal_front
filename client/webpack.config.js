@@ -15,7 +15,7 @@ const config = {
   },
   devtool: "source-map",
   resolve: {
-    extensions: [".js", ".jsx", ".css"],
+    extensions: [".js", ".jsx"],
   },
   devServer: {
     open: true,
@@ -37,7 +37,19 @@ const config = {
       },
       {
         test: /\.css$/i,
-        use: [stylesHandler, "css-loader"],
+        //exclude: /node_modules/, //remove bootstrap to exclude #TODO
+        use: [
+            { loader: 'style-loader' },
+            { 
+                loader: 'css-loader',
+                options: {
+                    importLoaders: 1,
+                    modules: {
+                      localIdentName: '[name]__[local]___[hash:base64:5]'
+                  }
+                }
+             }  
+        ]
       },
       {
         test: /\.(eot|svg|ttf|woff|woff2|png|jpg|gif)$/i,

@@ -1,4 +1,5 @@
 import React from "react";
+import classes from "./Layout.css"
 import Aux from "../AuxWrapper/AuxWrapper.js"
 import Navb from "../../components/Navb";
 
@@ -8,7 +9,7 @@ class Layout extends React.Component {
     return (
       <Aux>
         <Navb />
-        <main> {this.props.children}</main>
+        <main className={classes.Content}> {this.props.children}</main>
       </Aux>     
   )}
 }
