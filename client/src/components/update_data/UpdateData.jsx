@@ -1,12 +1,5 @@
 import React from "react"
-import Form from 'react-bootstrap/Form'
-import Button from 'react-bootstrap/Button'
-//import FromControl from 'react-bootstrap/FromControl'
-import form from 'react-bootstrap/form'
-import FormGroup from 'react-bootstrap/FormGroup'
-import FormLabel from 'react-bootstrap/FormLabel'
-//import HelpBlock from 'react-bootstrap/HelpBlock'
-
+import {Form, Button, FormControl, FormGroup, FormLabel} from "react-bootstrap"
 import { Converter } from "csvtojson"
 import Geocoder from "../../models/geocoder"
 import { bindActionCreators } from "redux"
@@ -22,10 +15,22 @@ class UpdateData extends React.Component {
     this.completedSurveyJson = []
   }
 
-  handleFileSubmitClick() {
+  componentDidMount () {
+    console.log(this.props); 
+    this.props.actions.common_actions.getAllBranchesFromRails();  // #TODO
+  } 
+
+
+
+
+  handleFileSubmitClick(e) {
+
+    e.preventDefault()
+    console.log("this.props: ",this.props)
     var file = document.getElementById("file").files[0]
     var reader = new FileReader()
     reader.readAsText(file)
+    console.log("clicked. in reader")
     reader.onload = this.convertToJson.bind(
       this,
       reader,
@@ -39,6 +44,7 @@ class UpdateData extends React.Component {
     var branchToReturn
     this.props.all_branches.forEach(branch => {
       if (branch.branch_code === branchCode) {
+        console.log("branch found")
         branchToReturn = branch
       }
     })
@@ -106,6 +112,7 @@ class UpdateData extends React.Component {
   }
 
   getGoogleDirectionsAndSendToRailsDb(json) {
+    console.log("getgoogledire")
     json = this.assignLoadingAndUnloadingTimes(json)
     json = this.assignDateMilli(json)
     var branch = this.getHomeBranchOfJob(json.branch_code)
@@ -240,14 +247,17 @@ class UpdateData extends React.Component {
     var text = event.target.result
     csv
       .fromString(text)
-      .on("json", json => {
+      .subscribe (json => {
+        console.log("jsonconverter1")
         instance_variable_array.push(json)
       })
-      .on("done", () => {
+      .then( () => {
         if (instance_variable_array == this.surveys) {
           callback.call(this)
         } else {
+          console.log("jsonconverter2")
           instance_variable_array.forEach((json, index) => {
+            console.log("jsonconverter3looop",instance_variable_array)
             setTimeout(() => {
               callback.call(this, json)
             }, 1000 * index)
@@ -344,8 +354,8 @@ class UpdateData extends React.Component {
             <FormLabel>Please Select CSV File</FormLabel>
             <FormControl type="file" id="file" />
             <Button
-              bsStyle="success"
-              bsSize="small"
+              variant="success"
+              size="sm"
               onClick={this.handleFileSubmitClick.bind(this)}
             >
               Submit
@@ -355,8 +365,8 @@ class UpdateData extends React.Component {
             <FormLabel>Please Select Surveys CSV File</FormLabel>
             <FormControl type="file" id="surveys_file" />
             <Button
-              bsStyle="success"
-              bsSize="small"
+              variant="success"
+              size="sm"
               onClick={this.handleSurveyFileSubmitClick.bind(this)}
             >
               Submit
@@ -379,7 +389,7 @@ const mapDispatchToProps = dispatch => ({
   actions: {
     update_data_actions: bindActionCreators(updateDataActions, dispatch),
 
-    commonActions: bindActionCreators(commonActions, dispatch)
+    common_actions: bindActionCreators(commonActions, dispatch)
   }
 })
 

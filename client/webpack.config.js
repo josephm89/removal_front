@@ -37,7 +37,7 @@ const config = {
       },
       {
         test: /\.css$/i,
-        //exclude: /node_modules/, //remove bootstrap to exclude #TODO
+        //exclude: /node_modules/, //remove bootstrap to exclude // #TODO
         use: [
             { loader: 'style-loader' },
             { 
